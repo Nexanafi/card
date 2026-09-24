@@ -6,6 +6,9 @@
 <meta name="theme-color" content="#050609">
 <title>Muhammed Nafi | NEXA Relationship Manager</title>
 
+<!-- Excel ഫയലുകൾ (.xls, .xlsx, .csv) റീഡ് ചെയ്യാനുള്ള ലൈബ്രറി -->
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
 <style>
 *{
     margin:0;
@@ -39,6 +42,7 @@ button{
     --line:rgba(255,255,255,.10);
     --muted:#92949d;
     --white:#fff;
+    --accent:#d1a054;
 }
 
 /* ================= GLOBAL ================= */
@@ -460,7 +464,6 @@ button{
     transform:scale(1.06);
 }
 
-/* --- NEW: graceful fallback shown when a car photo file is missing --- */
 .vehicle-image.no-photo{
     display:flex;
     align-items:center;
@@ -605,7 +608,7 @@ button{
 }
 
 .variants.open{
-    max-height:1200px;
+    max-height:1400px;
 }
 
 .variant{
@@ -712,6 +715,8 @@ button{
 .footer-logo{
     font-size:13px;
     letter-spacing:7px;
+    cursor:pointer;
+    user-select:none;
 }
 
 .footer-name{
@@ -732,6 +737,145 @@ button{
 
 .mobile-bar{
     display:none;
+}
+
+/* ================= SECRET ADMIN PANEL MODAL ================= */
+
+.admin-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.85);
+    backdrop-filter:blur(15px);
+    -webkit-backdrop-filter:blur(15px);
+    z-index:99999;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .3s ease;
+}
+
+.admin-overlay.open{
+    opacity:1;
+    pointer-events:auto;
+}
+
+.admin-modal{
+    background:#111218;
+    border:1px solid var(--line);
+    border-radius:24px;
+    padding:30px;
+    width:min(480px,100%);
+    box-shadow:0 30px 90px rgba(0,0,0,.8);
+    position:relative;
+}
+
+.admin-modal h3{
+    font-size:20px;
+    font-weight:400;
+    letter-spacing:-.5px;
+    margin-bottom:10px;
+}
+
+.admin-modal p{
+    font-size:12px;
+    color:#858790;
+    line-height:1.6;
+    margin-bottom:20px;
+}
+
+.admin-close{
+    position:absolute;
+    top:20px;
+    right:20px;
+    background:none;
+    border:none;
+    color:#858790;
+    font-size:22px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.admin-close:hover{
+    color:#fff;
+}
+
+.admin-input{
+    width:100%;
+    background:#07080a;
+    border:1px solid var(--line);
+    padding:13px 16px;
+    border-radius:12px;
+    color:#fff;
+    font-size:13px;
+    margin-bottom:15px;
+    outline:none;
+}
+
+.admin-input:focus{
+    border-color:#fff;
+}
+
+.admin-btn{
+    width:100%;
+    padding:14px;
+    background:#fff;
+    color:#050609;
+    border:none;
+    border-radius:12px;
+    font-weight:600;
+    font-size:12px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.admin-btn:hover{
+    background:#e0e0e0;
+}
+
+.file-dropzone{
+    border:2px dashed rgba(255,255,255,.18);
+    border-radius:16px;
+    padding:25px 15px;
+    text-align:center;
+    cursor:pointer;
+    margin-bottom:15px;
+    transition:.3s;
+    background:#08090c;
+}
+
+.file-dropzone:hover{
+    border-color:#fff;
+    background:#15161b;
+}
+
+.file-dropzone small{
+    display:block;
+    color:#6c6e77;
+    margin-top:6px;
+    font-size:10px;
+}
+
+.status-msg{
+    font-size:11px;
+    margin-top:12px;
+    padding:10px;
+    border-radius:8px;
+    display:none;
+}
+
+.status-msg.success{
+    background:rgba(46,204,113,.12);
+    color:#2ecc71;
+    border:1px solid rgba(46,204,113,.3);
+}
+
+.status-msg.error{
+    background:rgba(231,76,60,.12);
+    color:#e74c3c;
+    border:1px solid rgba(231,76,60,.3);
 }
 
 /* ================= MOBILE ================= */
@@ -837,8 +981,6 @@ button{
         font-size:8px;
     }
 }
-
-/* ================= REDUCED MOTION ================= */
 
 @media(prefers-reduced-motion:reduce){
     *,
@@ -957,19 +1099,15 @@ button{
 
             <div class="profile-buttons">
 
-                <a class="profile-btn"
-                   href="tel:+918891879185">
+                <a class="profile-btn" href="tel:+918891879185">
                     Call
                 </a>
 
-                <a class="profile-btn"
-                   href="https://wa.me/918891879185"
-                   target="_blank">
+                <a class="profile-btn" href="https://wa.me/918891879185" target="_blank">
                     WhatsApp
                 </a>
 
-                <a class="profile-btn"
-                   href="mailto:nafinexa@gmail.com">
+                <a class="profile-btn" href="mailto:nafinexa@gmail.com">
                     Email
                 </a>
 
@@ -1038,9 +1176,7 @@ button{
             Melmuri, Malappuram, Kerala 676517
         </p>
 
-        <a class="map"
-           href="https://maps.app.goo.gl/7est2Hi5uBt33YpT9?g_st=ic"
-           target="_blank">
+        <a class="map" href="https://maps.app.goo.gl/7est2Hi5uBt33YpT9?g_st=ic" target="_blank">
             Open Google Maps →
         </a>
 
@@ -1054,7 +1190,8 @@ button{
 
 <footer class="footer">
 
-    <div class="footer-logo">NEXA</div>
+    <!-- ഈ ലോഗോയിൽ 3 തവണ ക്ലിക്ക് ചെയ്താൽ സീക്രട്ട് അഡ്മിൻ മോഡ് ഓപ്പൺ ആകും -->
+    <div class="footer-logo" id="secretTrigger" title="NEXA">NEXA</div>
 
     <div class="footer-name">
         MUHAMMED NAFI • RELATIONSHIP MANAGER
@@ -1084,16 +1221,51 @@ button{
 
 </div>
 
+<!-- ================= HIDDEN ADMIN MODAL (താങ്കൾക്ക് മാത്രം) ================= -->
+
+<div class="admin-overlay" id="adminModal">
+    <div class="admin-modal">
+        <button class="admin-close" id="adminCloseBtn">&times;</button>
+        
+        <!-- ഘട്ടം 1: പാസ്‌വേഡ് ലോഗിൻ -->
+        <div id="loginSection">
+            <h3>Manager Access</h3>
+            <p>പ്രൈസ് ലിസ്റ്റ് അപ്‌ഗ്രേഡ് ചെയ്യാൻ സെക്യൂരിറ്റി പിൻ നൽകുക.</p>
+            <input type="password" id="adminPassword" class="admin-input" placeholder="Enter Password" autofocus>
+            <button class="admin-btn" id="loginBtn">ലോഗിൻ ചെയ്യുക</button>
+        </div>
+
+        <!-- ഘട്ടം 2: ഫയൽ അപ്‌ലോഡ് പാനൽ -->
+        <div id="uploadSection" style="display:none;">
+            <h3>Update Price List</h3>
+            <p>HR നൽകിയ പുതിയ Excel ഫയൽ (.xls / .xlsx / .csv) അപ്‌ലോഡ് ചെയ്യുക. പ്രൈസുകൾ സ്വയം മാറും.</p>
+            
+            <label class="file-dropzone" for="excelFileInput">
+                📁 <strong>Choose Excel File</strong>
+                <small>Price list (NEXA).xls അല്ലെങ്കിൽ .xlsx ഫയൽ തിരഞ്ഞെടുക്കുക</small>
+            </label>
+            <input type="file" id="excelFileInput" accept=".xls,.xlsx,.csv" style="display:none;">
+
+            <button class="admin-btn" id="resetBtn" style="background:transparent; color:#858790; border:1px solid var(--line); margin-top:10px;">
+                റീസെറ്റ് ചെയ്യുക (Default Prices)
+            </button>
+        </div>
+
+        <div class="status-msg" id="statusMessage"></div>
+    </div>
+</div>
+
 <script>
 
-/* ================= VEHICLE DATA ================= */
+/* ================= DEFAULT VEHICLE DATA ================= */
 
-const vehicles = [
+const defaultVehicles = [
 
 {
 name:"Baleno",
 category:"hatchback",
-tag:"Premium Hatchback",
+tag:"The New Age Baleno",
+/* ന്യൂ ബലേനോ ഒഫീഷ്യൽ ഇമേജ് */
 photo:"https://www.nexaexperience.com/adobe/assets/urn:aaid:aem:35e1388c-1892-49e6-bf8a-49fc82ab658e/as/Baleno-Front-Titled-335x185.png?height=555&width=1005",
 price:"₹5,98,899",
 transmission:"5MT / AGS",
@@ -1230,6 +1402,9 @@ variants:[
 
 ];
 
+/* LocalStorage-ൽ പുതിയ പ്രൈസ് ഡാറ്റ ഉണ്ടെങ്കിൽ അത് ലോഡ് ചെയ്യുന്നു */
+let vehicles = JSON.parse(localStorage.getItem("nexa_custom_vehicles")) || defaultVehicles;
+
 /* ================= RENDER ================= */
 
 const grid=document.getElementById("vehicleGrid");
@@ -1344,7 +1519,6 @@ function renderVehicles(filter="all"){
 
         grid.appendChild(card);
 
-        /* --- NEW: if the photo file fails to load, swap in a styled placeholder --- */
         const imgEl = card.querySelector(".vehicle-image img");
         const imageBox = card.querySelector(".vehicle-image");
 
@@ -1363,14 +1537,11 @@ function renderVehicles(filter="all"){
         const variantsBox=card.querySelector(".variants");
 
         toggle.addEventListener("click",()=>{
-
             variantsBox.classList.toggle("open");
-
             toggle.textContent =
                 variantsBox.classList.contains("open")
                 ? "Hide Variants & Prices −"
                 : "View Variants & Prices +";
-
         });
 
         setTimeout(()=>{
@@ -1384,23 +1555,13 @@ function renderVehicles(filter="all"){
 /* ================= FILTER ================= */
 
 document.querySelectorAll(".filter").forEach(button=>{
-
     button.addEventListener("click",()=>{
-
         document.querySelectorAll(".filter")
         .forEach(b=>b.classList.remove("active"));
-
         button.classList.add("active");
-
         renderVehicles(button.dataset.filter);
-
-        window.scrollBy({
-            top:1,
-            behavior:"smooth"
-        });
-
+        window.scrollBy({top:1,behavior:"smooth"});
     });
-
 });
 
 /* ================= SCROLL REVEAL ================= */
@@ -1419,6 +1580,171 @@ const observer=new IntersectionObserver(
 
 document.querySelectorAll(".reveal").forEach(el=>{
     observer.observe(el);
+});
+
+/* ================= SECRET ADMIN LOGIC (താങ്കൾക്ക് മാത്രം) ================= */
+
+const ADMIN_PIN = "nafi123"; // ആവശ്യമെങ്കിൽ ഈ പാസ്‌വേഡ് മാറ്റാം
+let clickCount = 0;
+let clickTimer = null;
+
+const adminModal = document.getElementById("adminModal");
+const secretTrigger = document.getElementById("secretTrigger");
+const adminCloseBtn = document.getElementById("adminCloseBtn");
+const loginBtn = document.getElementById("loginBtn");
+const adminPassword = document.getElementById("adminPassword");
+const loginSection = document.getElementById("loginSection");
+const uploadSection = document.getElementById("uploadSection");
+const statusMessage = document.getElementById("statusMessage");
+const excelFileInput = document.getElementById("excelFileInput");
+const resetBtn = document.getElementById("resetBtn");
+
+function openAdmin(){
+    adminModal.classList.add("open");
+    loginSection.style.display = "block";
+    uploadSection.style.display = "none";
+    statusMessage.style.display = "none";
+    adminPassword.value = "";
+    adminPassword.focus();
+}
+
+function closeAdmin(){
+    adminModal.classList.remove("open");
+}
+
+// 1. NEXA ലോഗോയിൽ 3 തവണ ക്ലിക്ക് ചെയ്യുമ്പോൾ അഡ്മിൻ മോഡ് ഓപ്പൺ ആകും
+secretTrigger.addEventListener("click", ()=>{
+    clickCount++;
+    clearTimeout(clickTimer);
+    if(clickCount >= 3){
+        openAdmin();
+        clickCount = 0;
+    } else {
+        clickTimer = setTimeout(()=>{ clickCount = 0; }, 800);
+    }
+});
+
+// 2. URL-ൽ #admin എന്ന് കൊടുത്താലും ഓപ്പൺ ആകും
+if(window.location.hash === "#admin"){
+    openAdmin();
+}
+
+adminCloseBtn.addEventListener("click", closeAdmin);
+
+// പാസ്‌വേഡ് വെരിഫിക്കേഷൻ
+loginBtn.addEventListener("click", ()=>{
+    if(adminPassword.value === ADMIN_PIN){
+        loginSection.style.display = "none";
+        uploadSection.style.display = "block";
+        statusMessage.style.display = "none";
+    } else {
+        showStatus("തെറ്റായ പാസ്‌വേഡ്! വീണ്ടും ശ്രമിക്കുക.", "error");
+    }
+});
+
+adminPassword.addEventListener("keyup", (e)=>{
+    if(e.key === "Enter") loginBtn.click();
+});
+
+function showStatus(text, type){
+    statusMessage.textContent = text;
+    statusMessage.className = "status-msg " + type;
+    statusMessage.style.display = "block";
+}
+
+// EXCEL ഫയൽ റീഡ് ചെയ്ത് വിലകൾ അപ്‌ഡേറ്റ് ചെയ്യുന്ന പ്രോസസ്
+excelFileInput.addEventListener("change", (e)=>{
+    const file = e.target.files[0];
+    if(!file) return;
+
+    showStatus("ഫയൽ അപ്‌ഡേറ്റ് ചെയ്യുന്നു... ദയവായി കാത്തിരിക്കൂ.", "success");
+
+    const reader = new FileReader();
+    reader.onload = function(evt){
+        try {
+            const data = new Uint8Array(evt.target.result);
+            const workbook = XLSX.read(data, {type: 'array'});
+            const firstSheetName = workbook.SheetNames[0];
+            const worksheet = workbook.Sheets[firstSheetName];
+            const rows = XLSX.utils.sheet_to_json(worksheet, {header: 1, defval: ""});
+
+            if(!rows || rows.length < 2){
+                showStatus("ഫയലിൽ ഡാറ്റ കണ്ടെത്തിയില്ല!", "error");
+                return;
+            }
+
+            // ഷീറ്റിലെ വരികൾ വിശകലനം ചെയ്യുന്നു
+            let updatedCount = 0;
+
+            // ഓരോ വണ്ടിയും ലൂപ്പ് ചെയ്യുന്നു
+            vehicles.forEach(car => {
+                let carPrices = [];
+                
+                car.variants.forEach(variantItem => {
+                    const vFullName = variantItem[0].toUpperCase().replace(/\s+/g, " ").trim();
+
+                    // Excel ഷീറ്റിലെ വരികളുമായി മാച്ച് ചെയ്യുന്നു
+                    for(let i = 0; i < rows.length; i++){
+                        const row = rows[i];
+                        const rowText = row.map(cell => String(cell).toUpperCase()).join(" ");
+
+                        // മോഡൽ / വേരിയന്റ് മാച്ച് കണ്ടെത്തൽ
+                        if(rowText.includes(car.name.toUpperCase())){
+                            for(let col = 0; col < row.length; col++){
+                                let cellVal = String(row[col]).trim();
+                                
+                                // വിലയാണോ എന്ന് പരിശോധിക്കുന്നു (സംഖ്യകൾ മാത്രം അല്ലെങ്കിൽ ₹ ഉള്ളത്)
+                                let cleanPriceNum = cellVal.replace(/[^0-9]/g, "");
+                                if(cleanPriceNum.length >= 6 && cleanPriceNum.length <= 8){
+                                    let priceNumber = parseInt(cleanPriceNum, 10);
+                                    if(priceNumber > 400000 && priceNumber < 4500000){
+                                        // വേരിയന്റ് മാച്ച് ആയാൽ പ്രൈസ് അപ്‌ഡേറ്റ് ചെയ്യുന്നു
+                                        let formattedPrice = "₹" + Number(priceNumber).toLocaleString("en-IN");
+                                        variantItem[2] = formattedPrice;
+                                        carPrices.push(priceNumber);
+                                        updatedCount++;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+
+                // ഏറ്റവും കുറഞ്ഞ വില കണ്ടെത്തി "New Price From" മാറ്റുന്നു
+                if(carPrices.length > 0){
+                    const minPrice = Math.min(...carPrices);
+                    car.price = "₹" + Number(minPrice).toLocaleString("en-IN");
+                }
+            });
+
+            // LocalStorage-ലേക്ക് പുതിയ ഡാറ്റ സേവ് ചെയ്യുന്നു
+            localStorage.setItem("nexa_custom_vehicles", JSON.stringify(vehicles));
+            
+            // വെബ്സൈറ്റിൽ ഉടനടി റെൻഡർ ചെയ്യുന്നു
+            renderVehicles();
+
+            showStatus("വിജയകരമായി പ്രൈസ് ലിസ്റ്റ് അപ്‌ഡേറ്റ് ചെയ്തു! സൈറ്റിൽ പുതിയ വിലകൾ വന്നു കഴിഞ്ഞു.", "success");
+            setTimeout(closeAdmin, 2200);
+
+        } catch(err){
+            console.error(err);
+            showStatus("ഫയൽ വായിക്കുന്നതിൽ പിശക് സംഭവിച്ചു! ശരിയായ Excel ഫയൽ ആണോ എന്ന് ഉറപ്പാക്കുക.", "error");
+        }
+    };
+
+    reader.readAsArrayBuffer(file);
+});
+
+// പ്രൈസ് റീസെറ്റ് ചെയ്യാനുള്ള ഓപ്ഷൻ
+resetBtn.addEventListener("click", ()=>{
+    if(confirm("പഴയ ഡിഫോൾട്ട് പ്രൈസിലേക്ക് മാറ്റണോ?")){
+        localStorage.removeItem("nexa_custom_vehicles");
+        vehicles = JSON.parse(JSON.stringify(defaultVehicles));
+        renderVehicles();
+        showStatus("ഡിഫോൾട്ട് പ്രൈസുകൾ പുനഃസ്ഥാപിച്ചു!", "success");
+        setTimeout(closeAdmin, 1500);
+    }
 });
 
 /* ================= START ================= */
