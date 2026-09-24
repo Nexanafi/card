@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#050609">
 <title>Muhammed Nafi | NEXA Relationship Manager</title>
 
-<!-- Excel ഫയലുകൾ (.xls, .xlsx, .csv) റീഡ് ചെയ്യാനുള്ള ലൈബ്രറി -->
+<!-- Excel ഫയലുകൾ റീഡ് ചെയ്യാനുള്ള ലൈബ്രറി -->
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 
 <style>
@@ -42,7 +42,7 @@ button{
     --line:rgba(255,255,255,.10);
     --muted:#92949d;
     --white:#fff;
-    --accent:#d1a054;
+    --accent:#c6a355;
 }
 
 /* ================= GLOBAL ================= */
@@ -98,9 +98,27 @@ button{
     text-transform:uppercase;
 }
 
+.nav-links{
+    display:flex;
+    gap:12px;
+    align-items:center;
+}
+
+.nav-link-btn{
+    text-decoration:none;
+    font-size:11px;
+    color:#aaa;
+    transition:.3s;
+    letter-spacing:1px;
+}
+
+.nav-link-btn:hover{
+    color:#fff;
+}
+
 .nav-wa{
     text-decoration:none;
-    padding:9px 15px;
+    padding:8px 16px;
     border:1px solid rgba(255,255,255,.18);
     border-radius:999px;
     font-size:11px;
@@ -415,7 +433,7 @@ button{
     color:#050609;
 }
 
-/* ================= VEHICLES ================= */
+/* ================= VEHICLES CARDS ================= */
 
 .vehicle-grid{
     display:grid;
@@ -608,7 +626,7 @@ button{
 }
 
 .variants.open{
-    max-height:1400px;
+    max-height:1800px;
 }
 
 .variant{
@@ -655,6 +673,145 @@ button{
 .vehicle-btn.wa{
     background:#fff;
     color:#050609;
+}
+
+/* ================= NEW: DETAILED VEHICLE PRICE LIST SECTION ================= */
+
+.price-list-section{
+    padding:100px 0;
+    border-top:1px solid var(--line);
+    background:#08090d;
+}
+
+.price-list-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    margin-bottom:35px;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.price-list-header h2{
+    font-size:clamp(34px,5vw,56px);
+    font-weight:300;
+    letter-spacing:-2px;
+    margin-top:10px;
+}
+
+.price-list-actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.action-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:12px 18px;
+    border-radius:12px;
+    font-size:11px;
+    border:1px solid var(--line);
+    background:#15161b;
+    color:#fff;
+    text-decoration:none;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.action-btn:hover{
+    background:#fff;
+    color:#050609;
+    border-color:#fff;
+}
+
+.action-btn.share-btn{
+    background:#25d366;
+    color:#050609;
+    font-weight:600;
+    border:none;
+}
+
+.action-btn.share-btn:hover{
+    background:#20ba59;
+}
+
+.model-price-group{
+    margin-bottom:30px;
+    border:1px solid var(--line);
+    border-radius:20px;
+    background:#0f1015;
+    overflow:hidden;
+}
+
+.model-group-title{
+    padding:18px 24px;
+    background:rgba(255,255,255,.03);
+    border-bottom:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.model-group-title h3{
+    font-size:18px;
+    font-weight:500;
+    letter-spacing:.5px;
+}
+
+.model-group-title span{
+    font-size:11px;
+    color:#8e9099;
+}
+
+.table-responsive{
+    width:100%;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+}
+
+.full-price-table{
+    width:100%;
+    border-collapse:collapse;
+    text-align:left;
+    font-size:11px;
+    min-width:700px;
+}
+
+.full-price-table th{
+    padding:14px 18px;
+    color:#7b7d87;
+    font-weight:500;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    font-size:9px;
+    border-bottom:1px solid var(--line);
+    background:#0a0b0e;
+}
+
+.full-price-table td{
+    padding:14px 18px;
+    border-bottom:1px solid rgba(255,255,255,.05);
+    color:#cfd0d5;
+}
+
+.full-price-table tr:last-child td{
+    border-bottom:none;
+}
+
+.full-price-table tr:hover td{
+    background:rgba(255,255,255,.02);
+}
+
+.col-ex{
+    color:#fff!important;
+    font-weight:500;
+}
+
+.col-onroad{
+    color:#4ade80!important;
+    font-weight:600;
 }
 
 /* ================= SHOWROOM ================= */
@@ -739,7 +896,7 @@ button{
     display:none;
 }
 
-/* ================= SECRET ADMIN PANEL MODAL ================= */
+/* ================= SECRET ADMIN MODAL ================= */
 
 .admin-overlay{
     position:fixed;
@@ -844,6 +1001,7 @@ button{
     margin-bottom:15px;
     transition:.3s;
     background:#08090c;
+    display:block;
 }
 
 .file-dropzone:hover{
@@ -878,11 +1036,54 @@ button{
     border:1px solid rgba(231,76,60,.3);
 }
 
+/* ================= PRINT STYLES ================= */
+
+@media print{
+    body{
+        background:#fff!important;
+        color:#000!important;
+    }
+    .nav, .hero, .profile, .catalog, .showroom, .footer, .mobile-bar, .admin-overlay, .price-list-actions{
+        display:none!important;
+    }
+    .price-list-section{
+        background:#fff!important;
+        padding:0!important;
+        border:none!important;
+    }
+    .model-price-group{
+        background:#fff!important;
+        border:1px solid #ccc!important;
+        page-break-inside:avoid;
+        margin-bottom:20px;
+    }
+    .model-group-title{
+        background:#f3f3f3!important;
+        color:#000!important;
+        border-bottom:1px solid #ccc!important;
+    }
+    .model-group-title h3, .model-group-title span{
+        color:#000!important;
+    }
+    .full-price-table th{
+        background:#f0f0f0!important;
+        color:#000!important;
+        border-bottom:1px solid #ccc!important;
+    }
+    .full-price-table td{
+        color:#000!important;
+        border-bottom:1px solid #eee!important;
+    }
+    .col-ex, .col-onroad{
+        color:#000!important;
+    }
+}
+
 /* ================= MOBILE ================= */
 
 @media(max-width:760px){
 
-    .nav-role{
+    .nav-role, .nav-links .nav-link-btn{
         display:none;
     }
 
@@ -904,7 +1105,8 @@ button{
 
     .profile,
     .catalog,
-    .showroom{
+    .showroom,
+    .price-list-section{
         padding:75px 0;
     }
 
@@ -981,17 +1183,6 @@ button{
         font-size:8px;
     }
 }
-
-@media(prefers-reduced-motion:reduce){
-    *,
-    *::before,
-    *::after{
-        animation-duration:.01ms!important;
-        animation-iteration-count:1!important;
-        transition-duration:.01ms!important;
-        scroll-behavior:auto!important;
-    }
-}
 </style>
 </head>
 
@@ -1006,9 +1197,11 @@ button{
             <div class="nav-role">Relationship Manager</div>
         </div>
 
-        <a class="nav-wa" href="https://wa.me/918891879185" target="_blank">
-            WhatsApp
-        </a>
+        <div class="nav-links">
+            <a class="nav-link-btn" href="#catalog">Collection</a>
+            <a class="nav-link-btn" href="#fullPriceList">Price List</a>
+            <a class="nav-wa" href="https://wa.me/918891879185" target="_blank">WhatsApp</a>
+        </div>
     </div>
 </nav>
 
@@ -1030,8 +1223,8 @@ button{
 
         <p class="hero-description">
             Welcome to my NEXA vehicle collection.
-            Explore models, variants, transmission options and
-            current ex-showroom prices — all in one place.
+            Explore models, variants, transmission options,
+            Ex-Showroom and complete On-Road prices — all in one place.
         </p>
 
         <div class="hero-actions">
@@ -1039,8 +1232,8 @@ button{
                 Explore Vehicles →
             </a>
 
-            <a class="hero-btn" href="https://wa.me/918590657060" target="_blank">
-                WhatsApp Me
+            <a class="hero-btn" href="#fullPriceList">
+                Detailed Price List ↓
             </a>
         </div>
 
@@ -1156,6 +1349,35 @@ button{
 
 </section>
 
+<!-- ================= NEW: DETAILED VEHICLE PRICE LIST SECTION ================= -->
+
+<section class="price-list-section" id="fullPriceList">
+<div class="container">
+
+    <div class="price-list-header reveal">
+        <div>
+            <div class="eyebrow">Official Pricing</div>
+            <h2>Vehicle Price List</h2>
+            <p style="color:#858790; font-size:13px; margin-top:8px;">
+                Complete breakdown of Ex-Showroom, Road Tax, TCS, and On-Road prices.
+            </p>
+        </div>
+
+        <div class="price-list-actions">
+            <button class="action-btn" id="downloadPdfBtn" onclick="window.print()">
+                📄 Download / Print PDF
+            </button>
+            <button class="action-btn share-btn" id="shareWaBtn">
+                💬 Share via WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <div id="fullPriceListContainer"></div>
+
+</div>
+</section>
+
 <!-- ================= SHOWROOM ================= -->
 
 <section class="showroom">
@@ -1190,7 +1412,7 @@ button{
 
 <footer class="footer">
 
-    <!-- ഈ ലോഗോയിൽ 3 തവണ ക്ലിക്ക് ചെയ്താൽ സീക്രട്ട് അഡ്മിൻ മോഡ് ഓപ്പൺ ആകും -->
+    <!-- ഈ ലോഗോയിൽ 3 തവണ ക്ലിക്ക് ചെയ്താൽ അഡ്മിൻ മോഡ് ഓപ്പൺ ആകും -->
     <div class="footer-logo" id="secretTrigger" title="NEXA">NEXA</div>
 
     <div class="footer-name">
@@ -1198,7 +1420,7 @@ button{
     </div>
 
     <div class="footer-copy">
-        VEHICLE INFORMATION • EX-SHOWROOM PRICES
+        VEHICLE INFORMATION • EX-SHOWROOM & ON-ROAD PRICES
     </div>
 
 </footer>
@@ -1221,28 +1443,26 @@ button{
 
 </div>
 
-<!-- ================= HIDDEN ADMIN MODAL (താങ്കൾക്ക് മാത്രം) ================= -->
+<!-- ================= HIDDEN ADMIN MODAL ================= -->
 
 <div class="admin-overlay" id="adminModal">
     <div class="admin-modal">
         <button class="admin-close" id="adminCloseBtn">&times;</button>
         
-        <!-- ഘട്ടം 1: പാസ്‌വേഡ് ലോഗിൻ -->
         <div id="loginSection">
             <h3>Manager Access</h3>
             <p>പ്രൈസ് ലിസ്റ്റ് അപ്‌ഗ്രേഡ് ചെയ്യാൻ സെക്യൂരിറ്റി പിൻ നൽകുക.</p>
-            <input type="password" id="adminPassword" class="admin-input" placeholder="Enter Password" autofocus>
+            <input type="password" id="adminPassword" class="admin-input" placeholder="Enter Password">
             <button class="admin-btn" id="loginBtn">ലോഗിൻ ചെയ്യുക</button>
         </div>
 
-        <!-- ഘട്ടം 2: ഫയൽ അപ്‌ലോഡ് പാനൽ -->
         <div id="uploadSection" style="display:none;">
             <h3>Update Price List</h3>
-            <p>HR നൽകിയ പുതിയ Excel ഫയൽ (.xls / .xlsx / .csv) അപ്‌ലോഡ് ചെയ്യുക. പ്രൈസുകൾ സ്വയം മാറും.</p>
+            <p>HR നൽകിയ പുതിയ Excel ഫയൽ (.xls / .xlsx / .csv) അപ്‌ലോഡ് ചെയ്യുക. എല്ലാ പുതിയ വേരിയന്റുകളും പ്രൈസുകളും തനിയെ മാറും.</p>
             
             <label class="file-dropzone" for="excelFileInput">
                 📁 <strong>Choose Excel File</strong>
-                <small>Price list (NEXA).xls അല്ലെങ്കിൽ .xlsx ഫയൽ തിരഞ്ഞെടുക്കുക</small>
+                <small>Price list (NEXA) ഫയൽ തിരഞ്ഞെടുക്കുക</small>
             </label>
             <input type="file" id="excelFileInput" accept=".xls,.xlsx,.csv" style="display:none;">
 
@@ -1257,7 +1477,7 @@ button{
 
 <script>
 
-/* ================= DEFAULT VEHICLE DATA ================= */
+/* ================= DEFAULT VEHICLE CATALOG DATA ================= */
 
 const defaultVehicles = [
 
@@ -1265,7 +1485,6 @@ const defaultVehicles = [
 name:"Baleno",
 category:"hatchback",
 tag:"The New Age Baleno",
-/* ന്യൂ ബലേനോ ഒഫീഷ്യൽ ഇമേജ് */
 photo:"https://www.nexaexperience.com/adobe/assets/urn:aaid:aem:35e1388c-1892-49e6-bf8a-49fc82ab658e/as/Baleno-Front-Titled-335x185.png?height=555&width=1005",
 price:"₹5,98,899",
 transmission:"5MT / AGS",
@@ -1402,12 +1621,74 @@ variants:[
 
 ];
 
-/* LocalStorage-ൽ പുതിയ പ്രൈസ് ഡാറ്റ ഉണ്ടെങ്കിൽ അത് ലോഡ് ചെയ്യുന്നു */
+/* ================= DETAILED BREAKDOWN DATA STRUCTURE ================= */
+
+const defaultDetailedPriceList = [
+    {
+        model: "NEW AGE BALENO (6 AIR BAG)",
+        items: [
+            { variant:"BALENO SIGMA 1.2L ISS 5MT", type:"(M)", exShowroom:598899, tax:77857, tcs:0, fastag:1600, onRoad:719291 },
+            { variant:"BALENO DELTA 1.2L ISS 5MT", type:"(M)", exShowroom:684899, tax:89037, tcs:0, fastag:1600, onRoad:820151 },
+            { variant:"BALENO ZETA 1.2L ISS 5MT", type:"(M)", exShowroom:774900, tax:100737, tcs:0, fastag:1600, onRoad:925869 },
+            { variant:"BALENO ALPHA 1.2L ISS 5MT", type:"(M)", exShowroom:867399, tax:112762, tcs:0, fastag:1600, onRoad:1034457 },
+            { variant:"BALENO DELTA 1.2L ISS AGS", type:"(M)", exShowroom:734899, tax:95537, tcs:0, fastag:1600, onRoad:878957 },
+            { variant:"BALENO ZETA 1.2L ISS AGS", type:"(M)", exShowroom:824900, tax:107237, tcs:0, fastag:1600, onRoad:983908 },
+            { variant:"BALENO ALPHA 1.2L ISS AGS", type:"(M)", exShowroom:917399, tax:119262, tcs:0, fastag:1600, onRoad:1093147 },
+            { variant:"BALENO DELTA CNG 1.2L 5MT", type:"(M)", exShowroom:777399, tax:101062, tcs:0, fastag:1600, onRoad:929452 },
+            { variant:"BALENO ZETA CNG 1.2L 5MT", type:"(M)", exShowroom:867399, tax:112762, tcs:0, fastag:1600, onRoad:1034557 }
+        ]
+    },
+    {
+        model: "FRONX (6 Airbags)",
+        items: [
+            { variant:"FRONX ISS SIGMA 6AB 1.2L 5MT ESP", type:"(M)", exShowroom:684899, tax:89037, tcs:0, fastag:1600, onRoad:821013 },
+            { variant:"FRONX ISS DELTA 6AB 1.2L 5MT ESP", type:"(M)", exShowroom:769899, tax:100087, tcs:0, fastag:1600, onRoad:921004 },
+            { variant:"FRONX ISS DELTA+ 6AB 1.2L 5MT ESP", type:"(M)", exShowroom:809500, tax:105235, tcs:0, fastag:1600, onRoad:967388 },
+            { variant:"FRONX TURBO SMART HYBRID DELTA+ 1.0L 5MT", type:"(M)", exShowroom:891899, tax:115947, tcs:0, fastag:1600, onRoad:1058754 },
+            { variant:"FRONX TURBO SMART HYBRID ZETA 1.0L 5MT", type:"(M)", exShowroom:970899, tax:126217, tcs:0, fastag:1600, onRoad:1151570 },
+            { variant:"FRONX TURBO SMART HYBRID ALPHA 1.0L 5MT", type:"(M)", exShowroom:1055899, tax:158385, tcs:10559, fastag:1600, onRoad:1283414 },
+            { variant:"FRONX ISS DELTA 6AB 1.2L AGS ESP", type:"(M)", exShowroom:819899, tax:106587, tcs:0, fastag:1600, onRoad:980004 },
+            { variant:"FRONX ISS DELTA+ 6AB 1.2L AGS ESP", type:"(M)", exShowroom:859500, tax:111735, tcs:0, fastag:1600, onRoad:1027091 },
+            { variant:"FRONX TURBO SMART HYBRID ZETA 1.0L 6AT ESP", type:"(M)", exShowroom:1098900, tax:164835, tcs:10989, fastag:1600, onRoad:1334911 },
+            { variant:"FRONX TURBO SMART HYBRID ALPHA 1.0L 6AT ESP", type:"(M)", exShowroom:1183900, tax:177585, tcs:11839, fastag:1600, onRoad:1437625 },
+            { variant:"FRONX SIGMA 6AB CNG 1.2L 5MT ESP", type:"(M)", exShowroom:786399, tax:102232, tcs:0, fastag:1600, onRoad:941097 },
+            { variant:"FRONX DELTA 6AB CNG 1.2L 5MT ESP", type:"(M)", exShowroom:866399, tax:112632, tcs:0, fastag:1600, onRoad:1035168 }
+        ]
+    },
+    {
+        model: "NEW XL6 (6 Airbags)",
+        items: [
+            { variant:"XL6 SMART HYBRID ZETA 1.5L 5MT", type:"(M)", exShowroom:1157300, tax:173595, tcs:11573, fastag:1600, onRoad:1408887 },
+            { variant:"XL6 SMART HYBRID ALPHA 1.5L 5MT", type:"(M)", exShowroom:1253799, tax:188070, tcs:12538, fastag:1600, onRoad:1524997 },
+            { variant:"XL6 SMART HYBRID ALPHA+ 1.5L 5MT", type:"(M)", exShowroom:1302099, tax:195315, tcs:13021, fastag:1600, onRoad:1583516 },
+            { variant:"XL6 SMART HYBRID ZETA 1.5L 6AT", type:"(M)", exShowroom:1292299, tax:193845, tcs:12923, fastag:1600, onRoad:1571280 },
+            { variant:"XL6 SMART HYBRID ALPHA 1.5L 6AT", type:"(M)", exShowroom:1388800, tax:208320, tcs:13888, fastag:1600, onRoad:1687392 },
+            { variant:"XL6 SMART HYBRID ALPHA+ 1.5L 6AT", type:"(M)", exShowroom:1437100, tax:215565, tcs:14371, fastag:1600, onRoad:1745946 },
+            { variant:"XL6 ZETA CNG 1.5L 5MT", type:"(M)", exShowroom:1253300, tax:187995, tcs:12533, fastag:1600, onRoad:1525657 }
+        ]
+    },
+    {
+        model: "GRAND VITARA 6 AIR BAGS",
+        items: [
+            { variant:"GRAND VITARA SMTHYBRID SIGMA 1.5L 5MT", type:"(M)", exShowroom:1076500, tax:161475, tcs:10765, fastag:1600, onRoad:1310659 },
+            { variant:"GRAND VITARA SMTHYBRID DELTA 1.5L 5MT", type:"(M)", exShowroom:1209700, tax:181455, tcs:12097, fastag:1600, onRoad:1472251 },
+            { variant:"GRAND VITARA SMTHYBRID ZETA 1.5L 5MT", type:"(M)", exShowroom:1385400, tax:207810, tcs:13854, fastag:1600, onRoad:1683269 },
+            { variant:"GRAND VITARA SMTHYBRID ALPHA 1.5L 5MT", type:"(M)", exShowroom:1535100, tax:260967, tcs:15351, fastag:1600, onRoad:1895780 },
+            { variant:"GRAND VITARA DELTA CNG 1.5L 5MT", type:"(M)", exShowroom:1299700, tax:194955, tcs:12997, fastag:1600, onRoad:1580975 },
+            { variant:"GRAND VITARA ZETA CNG 1.5L 5MT", type:"(M)", exShowroom:1475400, tax:221310, tcs:14754, fastag:1600, onRoad:1791993 },
+            { variant:"GRAND VITARA SMTHYBRID DELTA 1.5L 6AT", type:"(M)", exShowroom:1344700, tax:201705, tcs:13447, fastag:1600, onRoad:1636804 },
+            { variant:"GRAND VITARA SMTHYBRID ZETA 1.5L 6AT", type:"(M)", exShowroom:1505000, tax:255850, tcs:15050, fastag:1600, onRoad:1860434 },
+            { variant:"GRAND VITARA SMTHYBRID ALPHA 1.5L 6AT", type:"(M)", exShowroom:1654700, tax:281299, tcs:16547, fastag:1600, onRoad:2043853 }
+        ]
+    }
+];
+
 let vehicles = JSON.parse(localStorage.getItem("nexa_custom_vehicles")) || defaultVehicles;
+let detailedPriceList = JSON.parse(localStorage.getItem("nexa_detailed_prices")) || defaultDetailedPriceList;
 
-/* ================= RENDER ================= */
+/* ================= RENDER CATALOG CARDS ================= */
 
-const grid=document.getElementById("vehicleGrid");
+const grid = document.getElementById("vehicleGrid");
 
 function renderVehicles(filter="all"){
 
@@ -1429,91 +1710,53 @@ function renderVehicles(filter="all"){
         `).join("");
 
         card.innerHTML=`
-
             <div class="vehicle-image">
-
-                <span class="vehicle-label">
-                    ${car.tag}
-                </span>
-
-                <img
-                    src="${car.photo}"
-                    alt="NEXA ${car.name}"
-                    loading="eager"
-                >
-
+                <span class="vehicle-label">${car.tag}</span>
+                <img src="${car.photo}" alt="NEXA ${car.name}" loading="eager">
             </div>
 
             <div class="vehicle-content">
-
                 <div class="vehicle-title-row">
-
                     <div>
-                        <div class="vehicle-title">
-                            ${car.name}
-                        </div>
-
-                        <div class="vehicle-sub">
-                            NEXA Collection
-                        </div>
+                        <div class="vehicle-title">${car.name}</div>
+                        <div class="vehicle-sub">NEXA Collection</div>
                     </div>
-
                     <div class="price">
-                        <small>New Price From</small>
+                        <small>Ex-Showroom From</small>
                         <strong>${car.price}</strong>
                     </div>
-
                 </div>
 
                 <div class="spec-row">
-
                     <div class="spec">
                         <small>Transmission</small>
                         <span>${car.transmission}</span>
                     </div>
-
                     <div class="spec">
                         <small>Powertrain</small>
                         <span>${car.powertrain}</span>
                     </div>
-
                 </div>
 
-                <button class="variant-toggle">
-                    View Variants & Prices +
-                </button>
+                <button class="variant-toggle">View Variants & Ex-Showroom +</button>
 
                 <div class="variants">
-
                     <div class="variant" style="font-weight:700">
                         <span>Variant</span>
                         <span>Transmission</span>
-                        <b>New Price</b>
+                        <b>Ex-Showroom Price</b>
                     </div>
-
                     ${variantRows}
-
                 </div>
 
                 <div class="vehicle-actions">
-
-                    <a
-                        class="vehicle-btn wa"
-                        href="https://wa.me/918891879185?text=${encodeURIComponent(
-                            "Hi Muhammed Nafi, I am interested in the NEXA "+car.name+". Please share the latest details and offers."
-                        )}"
-                        target="_blank">
+                    <a class="vehicle-btn wa" href="https://wa.me/918891879185?text=${encodeURIComponent(
+                        "Hi Muhammed Nafi, I am interested in the NEXA "+car.name+". Please share the latest On-Road price sheet."
+                    )}" target="_blank">
                         💬 WhatsApp Enquiry
                     </a>
-
-                    <a
-                        class="vehicle-btn"
-                        href="tel:+918891879185">
-                        📞 Call
-                    </a>
-
+                    <a class="vehicle-btn" href="#fullPriceList">📊 Price List</a>
                 </div>
-
             </div>
         `;
 
@@ -1538,10 +1781,9 @@ function renderVehicles(filter="all"){
 
         toggle.addEventListener("click",()=>{
             variantsBox.classList.toggle("open");
-            toggle.textContent =
-                variantsBox.classList.contains("open")
-                ? "Hide Variants & Prices −"
-                : "View Variants & Prices +";
+            toggle.textContent = variantsBox.classList.contains("open")
+                ? "Hide Variants & Ex-Showroom −"
+                : "View Variants & Ex-Showroom +";
         });
 
         setTimeout(()=>{
@@ -1552,12 +1794,101 @@ function renderVehicles(filter="all"){
 
 }
 
-/* ================= FILTER ================= */
+/* ================= RENDER SEPARATE FULL PRICE LIST SECTION ================= */
+
+const priceListContainer = document.getElementById("fullPriceListContainer");
+
+function renderDetailedPriceList(){
+    priceListContainer.innerHTML = "";
+
+    if(!detailedPriceList || detailedPriceList.length === 0){
+        priceListContainer.innerHTML = "<p style='color:#777;'>No price list available.</p>";
+        return;
+    }
+
+    detailedPriceList.forEach(group => {
+        const groupEl = document.createElement("div");
+        groupEl.className = "model-price-group reveal";
+
+        let tableRows = "";
+        group.items.forEach(item => {
+            const exFmt = item.exShowroom ? "₹" + Number(item.exShowroom).toLocaleString("en-IN") : "-";
+            const taxFmt = item.tax ? "₹" + Number(item.tax).toLocaleString("en-IN") : "-";
+            const tcsFmt = item.tcs ? "₹" + Number(item.tcs).toLocaleString("en-IN") : "₹0";
+            const fastagFmt = item.fastag ? "₹" + Number(item.fastag).toLocaleString("en-IN") : "₹1,600";
+            const onRoadFmt = item.onRoad ? "₹" + Number(item.onRoad).toLocaleString("en-IN") : "-";
+
+            tableRows += `
+                <tr>
+                    <td style="font-weight:500;">${item.variant}</td>
+                    <td>${item.type || ""}</td>
+                    <td class="col-ex">${exFmt}</td>
+                    <td>${taxFmt}</td>
+                    <td>${tcsFmt}</td>
+                    <td>${fastagFmt}</td>
+                    <td class="col-onroad">${onRoadFmt}</td>
+                </tr>
+            `;
+        });
+
+        groupEl.innerHTML = `
+            <div class="model-group-title">
+                <h3>${group.model}</h3>
+                <span>${group.items.length} Variants</span>
+            </div>
+            <div class="table-responsive">
+                <table class="full-price-table">
+                    <thead>
+                        <tr>
+                            <th>Variant Name</th>
+                            <th>Type</th>
+                            <th>Ex-Showroom</th>
+                            <th>Road Tax</th>
+                            <th>1% TCS</th>
+                            <th>Reg + Fastag</th>
+                            <th>On-Road (Approx)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${tableRows}
+                    </tbody>
+                </table>
+            </div>
+        `;
+
+        priceListContainer.appendChild(groupEl);
+        setTimeout(()=>{ groupEl.classList.add("show"); }, 80);
+    });
+}
+
+/* ================= WHATSAPP SHARE PRICE LIST ================= */
+
+document.getElementById("shareWaBtn").addEventListener("click", ()=>{
+    let shareText = "🚗 *NEXA MALAPPURAM - LATEST PRICE LIST*\n";
+    shareText += "Contact: Muhammed Nafi (Relationship Manager)\n";
+    shareText += "Phone: 8891879185\n\n";
+
+    detailedPriceList.forEach(grp => {
+        shareText += `📌 *${grp.model}*\n`;
+        grp.items.slice(0, 3).forEach(it => {
+            shareText += `• ${it.variant}: Ex: ₹${Number(it.exShowroom).toLocaleString("en-IN")} | On-Road: ₹${Number(it.onRoad).toLocaleString("en-IN")}\n`;
+        });
+        if(grp.items.length > 3){
+            shareText += `+ ${grp.items.length - 3} more variants...\n`;
+        }
+        shareText += `\n`;
+    });
+
+    shareText += "For complete quotation and offers, message me on WhatsApp!";
+    const url = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
+    window.open(url, "_blank");
+});
+
+/* ================= FILTERS ================= */
 
 document.querySelectorAll(".filter").forEach(button=>{
     button.addEventListener("click",()=>{
-        document.querySelectorAll(".filter")
-        .forEach(b=>b.classList.remove("active"));
+        document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));
         button.classList.add("active");
         renderVehicles(button.dataset.filter);
         window.scrollBy({top:1,behavior:"smooth"});
@@ -1582,9 +1913,9 @@ document.querySelectorAll(".reveal").forEach(el=>{
     observer.observe(el);
 });
 
-/* ================= SECRET ADMIN LOGIC (താങ്കൾക്ക് മാത്രം) ================= */
+/* ================= SECRET ADMIN MODAL LOGIC ================= */
 
-const ADMIN_PIN = "nafi123"; // ആവശ്യമെങ്കിൽ ഈ പാസ്‌വേഡ് മാറ്റാം
+const ADMIN_PIN = "nafi123";
 let clickCount = 0;
 let clickTimer = null;
 
@@ -1612,7 +1943,6 @@ function closeAdmin(){
     adminModal.classList.remove("open");
 }
 
-// 1. NEXA ലോഗോയിൽ 3 തവണ ക്ലിക്ക് ചെയ്യുമ്പോൾ അഡ്മിൻ മോഡ് ഓപ്പൺ ആകും
 secretTrigger.addEventListener("click", ()=>{
     clickCount++;
     clearTimeout(clickTimer);
@@ -1624,14 +1954,12 @@ secretTrigger.addEventListener("click", ()=>{
     }
 });
 
-// 2. URL-ൽ #admin എന്ന് കൊടുത്താലും ഓപ്പൺ ആകും
 if(window.location.hash === "#admin"){
     openAdmin();
 }
 
 adminCloseBtn.addEventListener("click", closeAdmin);
 
-// പാസ്‌വേഡ് വെരിഫിക്കേഷൻ
 loginBtn.addEventListener("click", ()=>{
     if(adminPassword.value === ADMIN_PIN){
         loginSection.style.display = "none";
@@ -1652,12 +1980,17 @@ function showStatus(text, type){
     statusMessage.style.display = "block";
 }
 
-// EXCEL ഫയൽ റീഡ് ചെയ്ത് വിലകൾ അപ്‌ഡേറ്റ് ചെയ്യുന്ന പ്രോസസ്
+function cleanStr(s){
+    return String(s || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
+}
+
+/* ================= COMPREHENSIVE EXCEL PARSER ================= */
+
 excelFileInput.addEventListener("change", (e)=>{
     const file = e.target.files[0];
     if(!file) return;
 
-    showStatus("ഫയൽ അപ്‌ഡേറ്റ് ചെയ്യുന്നു... ദയവായി കാത്തിരിക്കൂ.", "success");
+    showStatus("ഫയൽ അപഗ്രഥിക്കുന്നു... ദയവായി കാത്തിരിക്കൂ.", "success");
 
     const reader = new FileReader();
     reader.onload = function(evt){
@@ -1666,90 +1999,153 @@ excelFileInput.addEventListener("change", (e)=>{
             const workbook = XLSX.read(data, {type: 'array'});
             const firstSheetName = workbook.SheetNames[0];
             const worksheet = workbook.Sheets[firstSheetName];
-            const rows = XLSX.utils.sheet_to_json(worksheet, {header: 1, defval: ""});
+            const rawRows = XLSX.utils.sheet_to_json(worksheet, {header: 1, defval: ""});
 
-            if(!rows || rows.length < 2){
+            if(!rawRows || rawRows.length < 2){
                 showStatus("ഫയലിൽ ഡാറ്റ കണ്ടെത്തിയില്ല!", "error");
                 return;
             }
 
-            // ഷീറ്റിലെ വരികൾ വിശകലനം ചെയ്യുന്നു
-            let updatedCount = 0;
+            // കോളം ഇൻഡക്സുകൾ കണ്ടെത്തുന്നു
+            let modelCol = 0, variantCol = 2, typeCol = 3, priceCol = 4, taxCol = 7, tcsCol = 8, onRoadCol = 12;
 
-            // ഓരോ വണ്ടിയും ലൂപ്പ് ചെയ്യുന്നു
-            vehicles.forEach(car => {
-                let carPrices = [];
-                
-                car.variants.forEach(variantItem => {
-                    const vFullName = variantItem[0].toUpperCase().replace(/\s+/g, " ").trim();
+            for(let r = 0; r < Math.min(10, rawRows.length); r++){
+                const row = rawRows[r];
+                for(let c = 0; c < row.length; c++){
+                    const val = String(row[c]).toUpperCase().trim();
+                    if(val === "MODEL") modelCol = c;
+                    if(val === "VARIANT") variantCol = c;
+                    if(val === "TYPE") typeCol = c;
+                    if(val.includes("NEW PRICE")) priceCol = c;
+                    if(val.includes("ROAD TAX")) taxCol = c;
+                    if(val.includes("TCS")) tcsCol = c;
+                    if(val.includes("ONROAD") || val.includes("ON ROAD")) onRoadCol = c;
+                }
+            }
 
-                    // Excel ഷീറ്റിലെ വരികളുമായി മാച്ച് ചെയ്യുന്നു
-                    for(let i = 0; i < rows.length; i++){
-                        const row = rows[i];
-                        const rowText = row.map(cell => String(cell).toUpperCase()).join(" ");
+            const newDetailedList = [];
+            let currentGroup = null;
+            const parsedVehiclesMap = {};
 
-                        // മോഡൽ / വേരിയന്റ് മാച്ച് കണ്ടെത്തൽ
-                        if(rowText.includes(car.name.toUpperCase())){
-                            for(let col = 0; col < row.length; col++){
-                                let cellVal = String(row[col]).trim();
-                                
-                                // വിലയാണോ എന്ന് പരിശോധിക്കുന്നു (സംഖ്യകൾ മാത്രം അല്ലെങ്കിൽ ₹ ഉള്ളത്)
-                                let cleanPriceNum = cellVal.replace(/[^0-9]/g, "");
-                                if(cleanPriceNum.length >= 6 && cleanPriceNum.length <= 8){
-                                    let priceNumber = parseInt(cleanPriceNum, 10);
-                                    if(priceNumber > 400000 && priceNumber < 4500000){
-                                        // വേരിയന്റ് മാച്ച് ആയാൽ പ്രൈസ് അപ്‌ഡേറ്റ് ചെയ്യുന്നു
-                                        let formattedPrice = "₹" + Number(priceNumber).toLocaleString("en-IN");
-                                        variantItem[2] = formattedPrice;
-                                        carPrices.push(priceNumber);
-                                        updatedCount++;
-                                        break;
-                                    }
-                                }
-                            }
-                        }
+            for(let r = 0; r < rawRows.length; r++){
+                const row = rawRows[r];
+                const col0 = String(row[modelCol] || "").trim();
+                const variantVal = String(row[variantCol] || "").trim();
+                const priceRaw = String(row[priceCol] || "").trim();
+
+                // ഒരു മോഡൽ ഹെഡിംഗ് കണ്ടെത്തിയാൽ
+                if(col0 && (!variantVal || col0.toUpperCase().includes("AIR BAG") || col0.toUpperCase().includes("BALENO") || col0.toUpperCase().includes("FRONX") || col0.toUpperCase().includes("XL6") || col0.toUpperCase().includes("VITARA") || col0.toUpperCase().includes("JIMNY") || col0.toUpperCase().includes("INVICTO"))){
+                    currentGroup = {
+                        model: col0,
+                        items: []
+                    };
+                    newDetailedList.push(currentGroup);
+                }
+
+                let cleanExNum = parseInt(priceRaw.replace(/[^0-9]/g, ""), 10);
+                if(variantVal && cleanExNum > 200000 && cleanExNum < 6000000){
+                    let taxVal = parseInt(String(row[taxCol] || "").replace(/[^0-9]/g, ""), 10) || 0;
+                    let tcsVal = parseInt(String(row[tcsCol] || "").replace(/[^0-9]/g, ""), 10) || 0;
+                    let onRoadVal = parseInt(String(row[onRoadCol] || "").replace(/[^0-9]/g, ""), 10) || 0;
+                    let typeVal = String(row[typeCol] || "").trim();
+
+                    // ട്രാൻസ്മിഷൻ കണ്ടെത്തുന്നു (5MT / 6AT / AGS / CVT / EV)
+                    let trans = "5MT";
+                    if(variantVal.includes("AGS")) trans = "AGS";
+                    else if(variantVal.includes("6AT")) trans = "6AT";
+                    else if(variantVal.includes("4AT")) trans = "4AT";
+                    else if(variantVal.includes("CVT")) trans = "CVT";
+                    else if(variantVal.includes("EV")) trans = "Single-Speed EV";
+
+                    const itemData = {
+                        variant: variantVal,
+                        type: typeVal,
+                        transmission: trans,
+                        exShowroom: cleanExNum,
+                        tax: taxVal,
+                        tcs: tcsVal,
+                        fastag: 1600,
+                        onRoad: onRoadVal > 0 ? onRoadVal : (cleanExNum + taxVal + tcsVal + 1600)
+                    };
+
+                    if(!currentGroup){
+                        currentGroup = { model: "NEXA VEHICLES", items: [] };
+                        newDetailedList.push(currentGroup);
                     }
-                });
+                    currentGroup.items.push(itemData);
 
-                // ഏറ്റവും കുറഞ്ഞ വില കണ്ടെത്തി "New Price From" മാറ്റുന്നു
-                if(carPrices.length > 0){
-                    const minPrice = Math.min(...carPrices);
-                    car.price = "₹" + Number(minPrice).toLocaleString("en-IN");
+                    // പ്രധാന കാറ്റലോഗ് കാർഡുകളിലേക്ക് വേരിയന്റുകളെ തരംതിരിക്കുന്നു
+                    let carKey = "Other";
+                    if(variantVal.toUpperCase().includes("BALENO")) carKey = "Baleno";
+                    else if(variantVal.toUpperCase().includes("FRONX")) carKey = "FRONX";
+                    else if(variantVal.toUpperCase().includes("XL6")) carKey = "XL6";
+                    else if(variantVal.toUpperCase().includes("GRAND VITARA")) carKey = "Grand Vitara";
+                    else if(variantVal.toUpperCase().includes("JIMNY")) carKey = "Jimny";
+                    else if(variantVal.toUpperCase().includes("INVICTO")) carKey = "Invicto";
+                    else if(variantVal.toUpperCase().includes("EVITARA") || variantVal.toUpperCase().includes("E-VITARA")) carKey = "e-VITARA";
+
+                    if(!parsedVehiclesMap[carKey]) parsedVehiclesMap[carKey] = [];
+                    parsedVehiclesMap[carKey].push([
+                        variantVal,
+                        trans,
+                        "₹" + Number(cleanExNum).toLocaleString("en-IN")
+                    ]);
+                }
+            }
+
+            // ഫയലിൽ ഡാറ്റ ഉണ്ടെങ്കിൽ കാറ്റലോഗ് കാർഡുകളിലെ വേരിയന്റ് ലിസ്റ്റ് പൂർണ്ണമായി അപ്‌ഡേറ്റ് ചെയ്യുന്നു
+            vehicles.forEach(car => {
+                if(parsedVehiclesMap[car.name] && parsedVehiclesMap[car.name].length > 0){
+                    car.variants = parsedVehiclesMap[car.name];
+                    // ഏറ്റവും കുറഞ്ഞ വില കണ്ടെത്തി 'Ex-Showroom From' അപ്‌ഡേറ്റ് ചെയ്യുന്നു
+                    let minNum = Math.min(...car.variants.map(v => parseInt(v[2].replace(/[^0-9]/g,""), 10)));
+                    car.price = "₹" + Number(minNum).toLocaleString("en-IN");
                 }
             });
 
-            // LocalStorage-ലേക്ക് പുതിയ ഡാറ്റ സേവ് ചെയ്യുന്നു
-            localStorage.setItem("nexa_custom_vehicles", JSON.stringify(vehicles));
-            
-            // വെബ്സൈറ്റിൽ ഉടനടി റെൻഡർ ചെയ്യുന്നു
-            renderVehicles();
+            // ക്ലീൻ ലിസ്റ്റ് ഉണ്ടെങ്കിൽ സൂക്ഷിക്കുന്നു
+            const finalGroups = newDetailedList.filter(g => g.items.length > 0);
+            if(finalGroups.length > 0){
+                detailedPriceList = finalGroups;
+                localStorage.setItem("nexa_detailed_prices", JSON.stringify(detailedPriceList));
+            }
 
-            showStatus("വിജയകരമായി പ്രൈസ് ലിസ്റ്റ് അപ്‌ഡേറ്റ് ചെയ്തു! സൈറ്റിൽ പുതിയ വിലകൾ വന്നു കഴിഞ്ഞു.", "success");
+            localStorage.setItem("nexa_custom_vehicles", JSON.stringify(vehicles));
+
+            // റീ-റെൻഡർ ചെയ്യുന്നു
+            renderVehicles();
+            renderDetailedPriceList();
+
+            showStatus("വിജയകരമായി മുഴുവൻ വേരിയന്റുകളും പ്രൈസ് ലിസ്റ്റും അപ്‌ഡേറ്റ് ചെയ്തു!", "success");
             setTimeout(closeAdmin, 2200);
 
         } catch(err){
             console.error(err);
-            showStatus("ഫയൽ വായിക്കുന്നതിൽ പിശക് സംഭവിച്ചു! ശരിയായ Excel ഫയൽ ആണോ എന്ന് ഉറപ്പാക്കുക.", "error");
+            showStatus("ഫയൽ അപ്‌ഡേറ്റ് ചെയ്യുന്നതിൽ പിശക് സംഭവിച്ചു!", "error");
         }
     };
 
     reader.readAsArrayBuffer(file);
 });
 
-// പ്രൈസ് റീസെറ്റ് ചെയ്യാനുള്ള ഓപ്ഷൻ
+// ഡിഫോൾട്ടിലേക്ക് റീസെറ്റ് ചെയ്യാനുള്ള ഓപ്ഷൻ
 resetBtn.addEventListener("click", ()=>{
-    if(confirm("പഴയ ഡിഫോൾട്ട് പ്രൈസിലേക്ക് മാറ്റണോ?")){
+    if(confirm("പഴയ ഡിഫോൾട്ട് വിവരങ്ങളിലേക്ക് റീസെറ്റ് ചെയ്യണോ?")){
         localStorage.removeItem("nexa_custom_vehicles");
+        localStorage.removeItem("nexa_detailed_prices");
         vehicles = JSON.parse(JSON.stringify(defaultVehicles));
+        detailedPriceList = JSON.parse(JSON.stringify(defaultDetailedPriceList));
         renderVehicles();
-        showStatus("ഡിഫോൾട്ട് പ്രൈസുകൾ പുനഃസ്ഥാപിച്ചു!", "success");
+        renderDetailedPriceList();
+        showStatus("ഡിഫോൾട്ട് ഡാറ്റ പുനഃസ്ഥാപിച്ചു!", "success");
         setTimeout(closeAdmin, 1500);
     }
 });
 
-/* ================= START ================= */
+/* ================= INITIAL RENDER ================= */
 
 renderVehicles();
+renderDetailedPriceList();
 
 </script>
 
