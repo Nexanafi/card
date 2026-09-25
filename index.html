@@ -675,7 +675,7 @@ button{
     color:#050609;
 }
 
-/* ================= NEW: DETAILED VEHICLE PRICE LIST SECTION ================= */
+/* ================= DETAILED VEHICLE PRICE LIST SECTION ================= */
 
 .price-list-section{
     padding:100px 0;
@@ -1349,7 +1349,7 @@ button{
 
 </section>
 
-<!-- ================= NEW: DETAILED VEHICLE PRICE LIST SECTION ================= -->
+<!-- ================= DETAILED VEHICLE PRICE LIST SECTION ================= -->
 
 <section class="price-list-section" id="fullPriceList">
 <div class="container">
@@ -1412,7 +1412,6 @@ button{
 
 <footer class="footer">
 
-    <!-- ഈ ലോഗോയിൽ 3 തവണ ക്ലിക്ക് ചെയ്താൽ അഡ്മിൻ മോഡ് ഓപ്പൺ ആകും -->
     <div class="footer-logo" id="secretTrigger" title="NEXA">NEXA</div>
 
     <div class="footer-name">
@@ -2049,7 +2048,7 @@ excelFileInput.addEventListener("change", (e)=>{
                     let onRoadVal = parseInt(String(row[onRoadCol] || "").replace(/[^0-9]/g, ""), 10) || 0;
                     let typeVal = String(row[typeCol] || "").trim();
 
-                    // ട്രാൻസ്മിഷൻ കണ്ടെത്തുന്നു (5MT / 6AT / AGS / CVT / EV)
+                    // ട്രാൻസ്മിഷൻ കണ്ടെത്തുന്നു
                     let trans = "5MT";
                     if(variantVal.includes("AGS")) trans = "AGS";
                     else if(variantVal.includes("6AT")) trans = "6AT";
